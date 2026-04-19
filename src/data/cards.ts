@@ -1,4 +1,4 @@
-import { TarotCard } from '../types';
+import { TarotCard } from '@/types';
 
 export const MAJOR_ARCANA: TarotCard[] = [
   {

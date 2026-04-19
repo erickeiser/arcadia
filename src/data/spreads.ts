@@ -1,4 +1,4 @@
-import { Spread } from '../types';
+import { Spread } from '@/types';
 
 export const SPREADS: Spread[] = [
   {

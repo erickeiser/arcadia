@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import { Sparkles, ArrowRight, BrainCircuit, Moon, Undo2, Lock } from 'lucide-react';
-import { SPREADS } from '../data/spreads';
-import { TAROT_DECK } from '../data/cards';
-import { Spread, TarotCard, CardInReading } from '../types';
+import { SPREADS } from '@/data/spreads';
+import { TAROT_DECK } from '@/data/cards';
+import { Spread, TarotCard, CardInReading } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
-import { generateTarotReading } from '../services/ai';
-import { useAuth } from '../context/AuthContext';
-import { db, signInWithGoogle } from '../lib/firebase';
+import { generateTarotReading } from '@/services/ai';
+import { useAuth } from '@/context/AuthContext';
+import { db, signInWithGoogle } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp, doc, updateDoc, increment } from 'firebase/firestore';
 
 export default function Draw() {

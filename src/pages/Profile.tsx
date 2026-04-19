@@ -5,8 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
-import { useAuth } from '../context/AuthContext';
-import { signInWithGoogle, logout } from '../lib/firebase';
+import { useAuth } from '@/context/AuthContext';
+import { signInWithGoogle, logout } from '@/lib/firebase';
 
 export default function Profile() {
   const { user, profile, loading } = useAuth();
