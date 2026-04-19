@@ -4,10 +4,10 @@ import { motion } from 'motion/react';
 import { Sparkles, ArrowLeft, Share2, CornerRightDown, BrainCircuit, Moon } from 'lucide-react';
 import { TAROT_DECK } from '@/data/cards';
 import { SPREADS } from '@/data/spreads';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Skeleton } from '@/components/ui/skeleton';
+import { Button } from '@/components/ui/Button';
+import { Card, CardContent } from '@/components/ui/Card';
+import { Badge } from '@/components/ui/Badge';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { db } from '@/lib/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 

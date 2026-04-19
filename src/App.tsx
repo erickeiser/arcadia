@@ -11,7 +11,7 @@ import Draw from '@/pages/Draw';
 import ReadingDetails from '@/pages/ReadingDetails';
 import ReadingHistory from '@/pages/ReadingHistory';
 import Profile from '@/pages/Profile';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button';
 
 function Navigation() {
   const location = useLocation();

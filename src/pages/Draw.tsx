@@ -5,9 +5,9 @@ import { Sparkles, ArrowRight, BrainCircuit, Moon, Undo2, Lock } from 'lucide-re
 import { SPREADS } from '@/data/spreads';
 import { TAROT_DECK } from '@/data/cards';
 import { Spread, TarotCard, CardInReading } from '@/types';
-import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/Button';
+import { Textarea } from '@/components/ui/Textarea';
+import { Card, CardContent } from '@/components/ui/Card';
 import { generateTarotReading } from '@/services/ai';
 import { useAuth } from '@/context/AuthContext';
 import { db, signInWithGoogle } from '@/lib/firebase';
