@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Check, Star, Zap, Crown, Shield, Sparkles } from 'lucide-react';
-import { Button } from '../components/ui/button';
-import { Card, CardContent } from '../components/ui/card';
-import { Badge } from '../components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 
 export default function PremiumPage() {
   const benefits = [

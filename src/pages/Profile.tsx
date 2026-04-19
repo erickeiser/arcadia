@@ -1,10 +1,10 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { User, Settings, Bell, CreditCard, LogOut, ChevronRight, Moon, Shield, LogIn } from 'lucide-react';
-import { Button } from '../components/ui/button';
-import { Card, CardContent } from '../components/ui/card';
-import { Avatar, AvatarFallback, AvatarImage } from '../components/ui/avatar';
-import { Separator } from '../components/ui/separator';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Separator } from '@/components/ui/separator';
 import { useAuth } from '../context/AuthContext';
 import { signInWithGoogle, logout } from '../lib/firebase';
 

@@ -6,12 +6,12 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { Sparkles, History, Moon, User, Star } from 'lucide-react';
-import Home from './pages/Home';
-import Draw from './pages/Draw';
-import ReadingDetails from './pages/ReadingDetails';
-import ReadingHistory from './pages/ReadingHistory';
-import Profile from './pages/Profile';
-import { Button } from './components/ui/button';
+import Home from '@/pages/Home';
+import Draw from '@/pages/Draw';
+import ReadingDetails from '@/pages/ReadingDetails';
+import ReadingHistory from '@/pages/ReadingHistory';
+import Profile from '@/pages/Profile';
+import { Button } from '@/components/ui/button';
 
 function Navigation() {
   const location = useLocation();
