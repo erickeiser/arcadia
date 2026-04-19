@@ -1,0 +1,68 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 0. Default Deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // --- Helpers ---
+    function isSignedIn() { return request.auth != null; }
+    function isVerified() { return isSignedIn() && request.auth.token.email_verified == true; }
+    function isOwner(userId) { return isSignedIn() && request.auth.uid == userId; }
+    function isValidId(id) { return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$'); }
+    
+    function incoming() { return request.resource.data; }
+    function existing() { return resource.data; }
+
+    // --- Entity Validations ---
+    function isValidReading(data) {
+      return data.userId == request.auth.uid
+        && data.question is string && data.question.size() <= 1000
+        && data.spreadId is string && data.spreadId.size() <= 50
+        && data.aiSummary is string && data.aiSummary.size() <= 10000
+        && data.cards is list
+        && data.cards.size() > 0 && data.cards.size() <= 10
+        && (data.createdAt == request.time || data.createdAt is timestamp)
+        && data.keys().hasAll(['userId', 'question', 'spreadId', 'aiSummary', 'cards', 'createdAt'])
+        && data.keys().size() <= 8; // Allowing room for optional id or isPremium
+    }
+
+    function isValidProfile(data) {
+      return data.uid == request.auth.uid
+        && data.email is string && data.email.size() <= 255
+        && (data.streak == 0 || data.streak is number)
+        && data.keys().hasAll(['uid', 'email'])
+        && data.keys().size() <= 8;
+    }
+
+    // --- Collection Routes ---
+
+    match /readings/{readingId} {
+      allow get: if isOwner(existing().userId);
+      allow list: if isSignedIn() && resource.data.userId == request.auth.uid;
+      
+      allow create: if isVerified() 
+        && isValidId(readingId) 
+        && isValidReading(incoming());
+      
+      allow delete: if isOwner(existing().userId);
+      
+      // Readings are immutable records of a moment
+      allow update: if false;
+    }
+
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      
+      allow create: if isVerified() 
+        && userId == request.auth.uid
+        && isValidProfile(incoming());
+      
+      allow update: if isOwner(userId)
+        && isValidProfile(incoming())
+        && incoming().uid == existing().uid
+        && incoming().diff(existing()).affectedKeys().hasOnly(['displayName', 'photoURL', 'streak', 'lastReadingAt']);
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "entities": {
+    "Reading": {
+      "title": "Tarot Reading",
+      "description": "A record of a tarot reading performed by a user.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string", "description": "The UID of the user who performed the reading." },
+        "question": { "type": "string", "description": "The question asked during the reading." },
+        "spreadId": { "type": "string", "description": "The ID of the spread used." },
+        "cards": {
+          "type": "array",
+          "description": "The cards drawn in the reading.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "position": { "type": "string" },
+              "isReversed": { "type": "boolean" },
+              "meaning": { "type": "string" }
+            }
+          }
+        },
+        "aiSummary": { "type": "string", "description": "The AI-generated interpretation." },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "isPremium": { "type": "boolean" }
+      },
+      "required": ["userId", "question", "spreadId", "cards", "aiSummary", "createdAt"]
+    },
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "User profile data and settings.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "isPremium": { "type": "boolean" },
+        "streak": { "type": "number" },
+        "lastReadingAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    }
+  },
+  "firestore": {
+    "/readings/{readingId}": {
+      "schema": "Reading",
+      "description": "Historical tarot readings."
+    },
+    "/users/{uid}": {
+      "schema": "UserProfile",
+      "description": "User account data."
+    }
+  }
+}
